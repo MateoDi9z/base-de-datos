@@ -1,0 +1,27 @@
+-- i) Hallar el codigo (nro_prov) de los proveedores que proveen el articulo A146
+proveedores_a146 = σ nro_art='A146' Pedido
+π nro_prov,nom_prov (Proveedor ⨝ proveedores_a146)
+
+-- ii) Hallar los clientes (nom_cli) que solicitan articulos provistos por p015
+articulosSolicitados = σ nro_prov='p015' Pedido
+cliente = articulosSolicitados ⨝ Cliente
+
+-- Selecciono columna nombre
+π nom_cli (cliente) 
+
+-- iii) Hallar los pedidos en los que un cliente de Rosario solicita articulos producidos en la ciudad de Mendoza
+clientesRosario = σ ciudad_cli='Rosario' Cliente
+artMendoza = σ ciudad_art='Mendoza' Articulo
+
+b = π nro_cli,nro_art (clientesRosario ⨝ artMendoza)
+b ⨝ Pedido
+
+-- v) Hallar los codigos de articulos de mayor precio. [codart, precio]
+
+precioMax = ρ precioMax←a.precio, precio←b.precio (π a.precio, b.precio (ρ a (Articulo) ⨝ a.precio ≥ b.precio (ρ b (Articulo))))
+
+preciosArt = π precio (Articulo)
+
+pMax = precioMax / preciosArt
+
+π codart, precio (Articulo ⨝ precio = precioMax pMax)
