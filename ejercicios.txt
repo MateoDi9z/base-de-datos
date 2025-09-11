@@ -25,3 +25,18 @@ preciosArt = π precio (Articulo)
 pMax = precioMax / preciosArt
 
 π codart, precio (Articulo ⨝ precio = precioMax pMax)
+
+-- vii)
+cervezas_gustadas = π nombre_cerveza Gusta
+cervezas_servidas = π nombre_cerveza Sirve
+
+persona_no_gusta_cerveza = ((π nombre_persona Gusta) x cervezas_servidas) - Gusta
+
+bares_frecuenta_sirven_cerveza_no_gusta_persona = (Sirve ⨝ persona_no_gusta_cerveza) ⨝ Frecuenta
+bares_frecuenta_sirven_cerveza_no_gusta_persona
+
+-- La corona se sirve pero a nadie le gusta
+-- cervezas_gustadas - cervezas_servidas
+
+-- personas_cervezas = Frecuenta x Gusta
+
